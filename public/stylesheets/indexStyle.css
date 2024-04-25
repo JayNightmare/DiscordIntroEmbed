@@ -1,13 +1,48 @@
-/* Reset some basic elements */
+:root {
+    --accent: 124, 58, 237;
+    --accent-gradient: linear-gradient( 45deg, rgb(var(--accent)), #da62c4 30%, white 60% );
+}
+
 html,
 body {
     height: 100%;
     margin: 0;
+    font-family: system-ui, sans-serif;
 }
 
-a {
+a#login {
     text-decoration: none;
-    color:#23272a
+    color:#23272a;
+
+    display: flex;            /* Enables flexbox */
+    align-items: center;      /* Centers items vertically in the container */
+    justify-content: center;  /* Centers items horizontally in the container */
+}
+
+a span {
+    background-image: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 400%;
+    background-position: 0%;
+}
+
+a h1 {
+    margin: 0; /* Removes default margin */
+    display: flex;
+    align-items: center; /* Centers text vertically in h1 */
+    justify-content: center; /* Centers text horizontally in h1 */
+    flex: 1; /* Allows the h1 to expand */
+    gap: 12px;
+}
+
+a#login .fa-discord {
+    margin-right: 1rem; /* Adds space between icon and text */
+}
+
+a#login > i,
+a#login > h1 {
+  margin: 0;
 }
 
 /* Flexbox centering */
@@ -114,4 +149,6 @@ a {
 
     .space-x-4>*+* {
         margin-left: 0.5rem;
-        /* 8px on
+        /* 8px on small screens */
+    }
+}
