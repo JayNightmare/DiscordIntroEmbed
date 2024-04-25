@@ -1,13 +1,18 @@
-body {
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: black;
+/* Add these styles in addition to the existing ones */
+
+#cardGenerator input[type="color"] {
+  height: 30px;
+  width: 30px;
+  border: none;
+  -webkit-appearance: none;
+  outline: none;
+  cursor: pointer;
 }
-  
-  [aria-label="background image"] {
-    width: 100%;
-    height: 100%;
-    object-fit: fill;
-    display: none;
-} 
+
+#cardGenerator input[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+#cardGenerator input[type="color"]::-webkit-color-swatch {
+  border: none;
+}
