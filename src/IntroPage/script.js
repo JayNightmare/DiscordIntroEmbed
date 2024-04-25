@@ -55,15 +55,6 @@ document.getElementById('generateButton').addEventListener('click', function() {
     return;
   }
 
-    const discordId = document.getElementById('discordId').value;
-    const gradientStart = document.getElementById('gradientStart').value;
-    const gradientEnd = document.getElementById('gradientEnd').value;
-
-    if (!discordId) {
-        alert('Please enter a Discord ID.');
-        return;
-    }
-
     // Replace this with the actual API call to your backend
     fetch(`http://localhost:3000/getUserData?discordId=${discordId}`) // Update with your actual endpoint
     .then(response => {
@@ -86,4 +77,32 @@ document.getElementById('generateButton').addEventListener('click', function() {
         cardPreview.innerHTML = ''; // Clear the preview field
 
         // Create the card with user data
-        const cardElement = createU
+        const cardElement = createUserCardElement(userData, gradientStart, gradientEnd);
+        cardPreview.appendChild(cardElement);
+
+        // Additional logic to convert this card into an image will be needed here
+    })
+    .catch(error => {
+        console.error('Error fetching user data:', error);
+    });
+});
+
+function createUserCardElement(userData, gradientStart, gradientEnd) {
+    const card = document.createElement('div');
+    card.className = 'userCard';
+    card.style.backgroundImage = `linear-gradient(${gradientStart}, ${gradientEnd})`;
+
+    // Add elements like avatar, username, about me, etc. to the card
+    // You can create each element using document.createElement and set their properties
+
+    // This is an example for the username
+    const username = document.createElement('h2');
+    username.textContent = `${userData.username}#${userData.discriminator}`;
+    card.appendChild(username);
+
+    // Add other user information and style them as you like
+
+    return card;
+}
+
+// This createUserCardElement function is very basic. You would need to expand it to include all the user details and style them to match Discord's card layout.
