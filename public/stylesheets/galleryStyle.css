@@ -1,0 +1,57 @@
+body {
+    font-family: system-ui, sans-serif;
+    margin: 0;
+    background-color: #23272A;
+}
+
+nav .image-1Psl69 {
+    border-radius: 50%; /* Circular avatar */
+    width: 48px; /* Fixed width */
+    height: 48px; /* Fixed height */
+    margin-right: 1rem; /* Space between the avatar and the username */
+
+    background-size: cover; /* cover the entire area of the div */
+    background-position: center; /* center the image in the div */
+    background-repeat: no-repeat; /* do not repeat the image */
+}
+
+.gallery-container {
+    max-width: 1200px;
+    margin: auto;  
+}
+
+h1 {
+    text-align: center;
+    color: #ddd;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+    padding: 20px;
+    opacity: 0;
+    animation: fadeIn 2s forwards; /* Animation to fade in */
+}
+
+.gallery-item {
+    background-color: #181b1d;
+    border: 1px solid #181b1d;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

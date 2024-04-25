@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <base href="/">
+    <title>Create Your Intro Card</title>
+    <link rel="stylesheet" href="stylesheets/createCardStyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="container">
+        <h1>Create Your Custom Intro Card</h1>
+        
+        <!-- Form for creating an intro card -->
+        <form id="introCardForm">
+            <!-- Section for choosing a template -->
+            <section class="form-section">
+                <label for="template">Choose a template:</label>
+                <select id="template" name="template">
+                    <option value="classic">Classic</option>
+                    <option value="modern">Modern</option>
+                    <option value="abstract">Abstract</option>
+                </select>
+            </section>
+
+            <!-- Section for choosing a color scheme -->
+            <section class="form-section">
+                <label for="color">Choose a color scheme:</label>
+                <input type="color" id="color" name="color" value="#000000">
+            </section>
+
+            <!-- Section for entering text -->
+            <section class="form-section">
+                <label for="username">Enter your username:</label>
+                <input type="text" id="username" name="username" placeholder="Your Discord Username">
+            </section>
+
+            <!-- Section for uploading an image -->
+            <section class="form-section">
+                <label for="imageUpload">Upload an image:</label>
+                <input type="file" id="imageUpload" name="imageUpload">
+            </section>
+
+            <!-- Section for creating the intro card -->
+            <section class="form-section">
+                <button type="button" id="createBtn">Create Intro Card</button>
+            </section>
+        </form>
+
+        <!-- Display the created intro card -->
+        <div id="introCardDisplay" class="intro-card">
+            <p>Preview your intro card here...</p>
+        </div>
+    </div>
+
+    <script src="createCardScript.js"></script>
+</body>
+</html>
