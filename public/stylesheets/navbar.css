@@ -1,0 +1,45 @@
+/* Style for the navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #2C2F33; /* Discord dark color */
+    padding: 1rem;
+    color: white;
+}
+
+/* Style for the logo */
+.nav-logo img {
+    height: 50px; /* Adjust to your preference */
+}
+
+/* Style for navigation items */
+.nav-items a {
+    margin: 0 1rem;
+    color: white;
+    text-decoration: none;
+}
+
+.nav-items a:hover {
+    color: #7289DA; /* Discord blue for hover state */
+}
+
+/* Style for user avatar */
+.nav-user img {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%; /* Circular images */
+}
+
+/* Responsive styling for smaller screens */
+@media (max-width: 768px) {
+    .nav-items a {
+        display: none; /* Hide nav links on small screens */
+    }
+
+    .nav-user {
+        flex-grow: 1;
+        display: flex;
+        justify-content: flex-end;
+    }
+}

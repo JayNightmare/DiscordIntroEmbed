@@ -10,9 +10,6 @@ body {
 /* Flexbox container */
 .flex {
     display: flex;
-    flex-direction: column; /* Stack children vertically */
-    align-items: center; /* Center-align horizontally */
-    justify-content: center; /* Center-align vertically */
 }
 
 /* General full height for flex container */
@@ -38,6 +35,10 @@ body {
     width: 48px; /* Fixed width */
     height: 48px; /* Fixed height */
     margin-right: 1rem; /* Space between the avatar and the username */
+
+    background-size: cover; /* cover the entire area of the div */
+    background-position: center; /* center the image in the div */
+    background-repeat: no-repeat; /* do not repeat the image */
 }
 
 /* Logout link styling */
@@ -63,4 +64,19 @@ a:hover {
 
 .mt-5 {
     margin-top: 1.25rem; /* Larger margin top */
+}
+
+
+/* Account info image and name */
+div#account-info {
+    flex-direction: row;
+
+    img {
+        width: 64px;
+        height: 64px;
+    }
+}
+
+#username {
+    font-size: 18px;
 }
