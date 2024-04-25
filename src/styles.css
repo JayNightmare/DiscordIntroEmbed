@@ -1,0 +1,13 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: black;
+}
+  
+  [aria-label="background image"] {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    display: none;
+} 
