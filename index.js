@@ -28,7 +28,7 @@ app.get('*', (request, response) => {
 });
 
 app.use(session({
-	secret: 'your_secret_key',
+	secret: 'rrh349f(*H938r',
 	resave: false,
 	saveUninitialized: true,
 	cookie: { secure: true }
@@ -43,7 +43,6 @@ app.use(session({
   // Access the token from session
   app.get('/some-protected-route', (req, res) => {
 	  const accessToken = req.session.accessToken;
-	  // Use the accessToken for API requests or other logic
   });
 
 

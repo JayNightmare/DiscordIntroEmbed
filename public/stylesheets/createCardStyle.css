@@ -1,8 +1,18 @@
 body {
     font-family: system-ui, sans-serif;
-    background-color: #f4f4f4;
     margin: 0;
-    padding: 20px;
+    background-color: #36393e;
+}
+
+nav .image-1Psl69 {
+    border-radius: 50%; /* Circular avatar */
+    width: 48px; /* Fixed width */
+    height: 48px; /* Fixed height */
+    margin-right: 1rem; /* Space between the avatar and the username */
+
+    background-size: cover; /* cover the entire area of the div */
+    background-position: center; /* center the image in the div */
+    background-repeat: no-repeat; /* do not repeat the image */
 }
 
 .container {
