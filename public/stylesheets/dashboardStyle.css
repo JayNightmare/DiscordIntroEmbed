@@ -1,0 +1,66 @@
+/* General body styling */
+body {
+    background-color: #23272A; /* Discord dark grey */
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #FFFFFF; /* White text color */
+}
+
+/* Flexbox container */
+.flex {
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    align-items: center; /* Center-align horizontally */
+    justify-content: center; /* Center-align vertically */
+}
+
+/* General full height for flex container */
+.h-screen {
+    height: 100vh; /* Full viewport height */
+}
+
+/* Styling for welcome message */
+.text-2xl {
+    font-size: 1.5rem; /* Medium-large text */
+    padding: 0.5rem 0; /* Some padding around the text */
+}
+
+/* User name and avatar container */
+.text-4xl {
+    font-size: 2.5rem; /* Larger text for user name */
+    margin-top: 1rem; /* Space from the above element */
+}
+
+/* User avatar styling */
+#avatar {
+    border-radius: 50%; /* Circular avatar */
+    width: 48px; /* Fixed width */
+    height: 48px; /* Fixed height */
+    margin-right: 1rem; /* Space between the avatar and the username */
+}
+
+/* Logout link styling */
+a {
+    color: #7289DA; /* Discord bluish link color */
+    text-decoration: none; /* No underline */
+    font-size: 0.875rem; /* Small text size */
+    margin-top: 1.5rem; /* Space from the above element */
+}
+
+a:hover {
+    text-decoration: underline; /* Underline on hover for better UX */
+}
+
+/* Utility classes for margin and padding */
+.mr-3 {
+    margin-right: 1rem; /* Margin right */
+}
+
+.mt-3 {
+    margin-top: 1rem; /* Margin top */
+}
+
+.mt-5 {
+    margin-top: 1.25rem; /* Larger margin top */
+}
