@@ -1,7 +1,6 @@
 const path = require('path');
 const express = require('express');
 
-
 const app = express();
 
 app.use('',express.static(path.join(__dirname, 'public')));
@@ -27,12 +26,12 @@ app.get('*', (request, response) => {
     return response.status(404).send('Page not found');
 });
 
-app.use(session({
-	secret: 'rrh349f(*H938r',
-	resave: false,
-	saveUninitialized: true,
-	cookie: { secure: true }
-  }));
+// app.use(session({
+// 	secret: '',
+// 	resave: false,
+// 	saveUninitialized: true,
+// 	cookie: { secure: true }
+//   }));
   
   // Save the token in the session
   app.get('/auth/discord/callback', (req, res) => {
