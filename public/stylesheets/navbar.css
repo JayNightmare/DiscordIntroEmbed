@@ -10,7 +10,18 @@
 
 /* Style for the logo */
 .nav-logo img {
-    height: 50px; /* Adjust to your preference */
+    border-radius: 50%; /* Circular avatar */
+    width: 48px; /* Fixed width */
+    height: 48px; /* Fixed height */
+    margin-right: 1rem; /* Space between the avatar and the username */
+
+    background-size: cover; /* cover the entire area of the div */
+    background-position: center; /* center the image in the div */
+    background-repeat: no-repeat; /* do not repeat the image */
+}
+
+.nav-logo a {
+    text-decoration: none;
 }
 
 /* Style for navigation items */

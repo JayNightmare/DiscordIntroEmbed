@@ -12,24 +12,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
         integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <script>
+        fetch('navbar.html')
+        .then(response => response.text())
+        .then(html => {
+            document.getElementById('navbar-input').innerHTML = html;
+        })
+        .catch(err => console.error('Failed to load navbar: ', error));
+    </script>
 </head>
 
 <body>
-    <nav class="navbar">
-        <div class="nav-logo">
-            <a href="/"><img src="#" alt="Logo" id="nav-logo-img"></a>
-        </div>
-        <div class="nav-items">
-            <a href="/NavBarOptions/CreateCard/CreateCard.html">Create Card</a>
-            <a href="/NavBarOptions/Gallery/Gallery.html">Gallery</a>
-            <a href="/option3">Resources</a>
-        </div>
-        <div class="nav-user">
-            <a href="/dashboard" id="profile-link">
-                <div class="image-1Psl69" alt="User" id="avatar"></div>
-            </a>
-        </div>
-    </nav>
+    <div id="navbar-input"></div>
 
     <div class="flex items-center h-screen bg-discord-gray text-white flex-col">
         <div class="text-2xl">Welcome to the dashboard,</div>

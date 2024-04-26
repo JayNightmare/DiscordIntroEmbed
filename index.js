@@ -1,5 +1,6 @@
 const path = require('path');
 const express = require('express');
+const { request } = require('http');
 
 const app = express();
 
@@ -26,12 +27,16 @@ app.get('*', (request, response) => {
     return response.status(404).send('Page not found');
 });
 
-// app.use(session({
-// 	secret: '',
-// 	resave: false,
-// 	saveUninitialized: true,
-// 	cookie: { secure: true }
-//   }));
+app.get('navbar-input', (request, response) => {
+    return response.sendFile('navbar.html', { root: '.' });
+})
+
+app.use(session({
+	secret: '1234',
+	resave: false,
+	saveUninitialized: true,
+	cookie: { secure: true }
+  }));
   
   // Save the token in the session
   app.get('/auth/discord/callback', (req, res) => {
