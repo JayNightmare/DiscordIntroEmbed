@@ -48,16 +48,32 @@
                 <input type="color" id="color" name="color" value="#000000">
             </section>
 
-            <!-- Section for entering text -->
             <section class="form-section">
-                <label for="username">Enter your username:</label>
-                <input type="text" id="username" name="username" placeholder="Your Discord Username">
+                <label for="bio">Your Bio:</label>
+                <textarea id="bio" name="bio" placeholder="Tell us about yourself"></textarea>
             </section>
 
-            <!-- Section for uploading an image -->
             <section class="form-section">
-                <label for="imageUpload">Upload an image:</label>
-                <input type="file" id="imageUpload" name="imageUpload">
+                <label for="intro">Short Intro:</label>
+                <textarea id="intro" name="intro" placeholder="A short intro for your card"></textarea>
+            </section>
+
+            <!-- Section for badge selection -->
+            <section class="form-section">
+                <label for="badges">Select Your Badges:</label>
+                <div id="badge-options">
+                    <!-- Example badges; update with actual options -->
+                    <label><input type="checkbox" name="badges" value="gold-crown"> Gold Crown</label>
+                    <label><input type="checkbox" name="badges" value="silver-crown"> Silver Crown</label>
+                    <label><input type="checkbox" name="badges" value="bronze-crown"> Bronze Crown</label>
+                    <!-- Add other badges here -->
+                </div>
+            </section>
+
+            <!-- Section for skills input -->
+            <section class="form-section">
+                <label for="skills">Your Skills:</label>
+                <input type="text" id="skills" name="skills" placeholder="List your skills, separated by commas">
             </section>
 
             <!-- Section for creating the intro card -->
@@ -72,7 +88,51 @@
         </div>
     </div>
 
-    <script src="public/NavBarOptions/CreateCard/createCardScript.js"></script>
+    <script>
+        const accessToken = localStorage.getItem('accessToken') || getCookie('accessToken');
+
+            fetch('https://discord.com/api/users/@me', {
+                headers: { 'Authorization': `Bearer ${accessToken}` }
+            })
+                .then(result => result.json())
+                .then(response => {
+                    const { username, avatar, id, global_name } = response;
+
+                    document.getElementById('createBtn').addEventListener('click', function () {
+                        const template = document.getElementById('template').value;
+                        const color = document.getElementById('color').value;
+                        const bio = document.getElementById('bio').value;
+                        const intro = document.getElementById('intro').value;
+                        const skills = document.getElementById('skills').value.split(','); // Split skills by comma
+
+                        const selectedBadges = Array.from(document.querySelectorAll('input[name="badges"]:checked')).map(checkbox => checkbox.value);
+
+                        // Build out the intro card with new elements
+                        const displayArea = document.getElementById('introCardDisplay');
+                        displayArea.innerHTML = `
+                        <div class="intro-card" style="background-color:${color};">
+                            <div id="center">
+                                <div alt="User Avatar" class="intro-card-avatar"></div>
+                            </div>
+                            <div>
+                                <h2>${global_name}</h2>
+                                <p>${username}</p>
+                            </div>
+                            
+                            <p>${bio}</p>
+                            <p>${intro}</p>
+                            <div class="badge-container">${selectedBadges.map(badge => `<span class="badge badge-${badge}"></span>`).join('')}</div>
+                            <ul class="skills-list">${skills.map(skill => `<li>${skill.trim()}</li>`).join('')}</ul>
+                            <p>Template: ${template}</p>
+                        </div>
+                        `;
+
+                        document.querySelector('.intro-card-avatar').style.backgroundImage = `url("https://cdn.discordapp.com/avatars/${id}/${avatar}")`;
+                        document.querySelector('.intro-card-bio').innerHTML = bio;
+                    });
+                })
+                .catch(console.error);
+    </script>
     <script>
         window.onload = () => {
             const accessToken = localStorage.getItem('accessToken') || getCookie('accessToken');
@@ -81,15 +141,6 @@
                 window.location.href = '/';
                 return;
             }
-    
-            fetch('https://discord.com/api/users/@me', {
-                headers: { 'Authorization': `Bearer ${accessToken}` }
-            })
-            .then(result => result.json())
-            .then(data => {
-                console.log(data); // Process and display gallery data
-            })
-            .catch(console.error);
     
             function getCookie(name) {
                 let cookie = {};

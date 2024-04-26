@@ -2,6 +2,8 @@ body {
     font-family: system-ui, sans-serif;
     margin: 0;
     background-color: #36393e;
+
+    color: #ddd;
 }
 
 nav .image-1Psl69 {
@@ -18,7 +20,9 @@ nav .image-1Psl69 {
 .container {
     max-width: 800px;
     margin: auto;
-    background: white;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background: #181b1d;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
@@ -26,7 +30,7 @@ nav .image-1Psl69 {
 
 h1 {
     text-align: center;
-    color: #333;
+    color: #ddd;
 }
 
 .form-section {
@@ -41,9 +45,11 @@ label {
 input[type="text"],
 input[type="color"],
 input[type="file"],
-select {
+select,
+#bio,
+#intro {
     width: 100%;
-    padding: 10px;
+    padding: 10px 0px 10px 0px;
     border-radius: 4px;
     border: 1px solid #ddd;
     margin-bottom: 10px;
@@ -68,4 +74,59 @@ button:hover {
     padding: 20px;
     text-align: center;
     margin-top: 20px;
+}
+
+.intro-card-avatar {
+    border-radius: 50%; /* Circular avatar */
+    width: 100px; /* Fixed width */
+    height: 100px; /* Fixed height */
+
+    background-size: cover; /* cover the entire area of the div */
+    background-position: center; /* center the image in the div */
+    background-repeat: no-repeat; /* do not repeat the image */
+}
+
+#center {
+    display: flex;
+    justify-content: center;
+}
+
+.intro-card-bio {
+    margin: 10px 0;
+}
+
+.badge-icon {
+    /* Generic styles for all badges */
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-right: 5px;
+}
+
+/* Add specific classes for each type of badge with corresponding backgrounds */
+.badge-gold-crown {
+    background-image: url('/');
+}
+
+.badge-container {
+    margin: 10px 0;
+}
+
+.badge {
+    
+}
+
+.skills-list {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.skills-list li {
+    background: #e1e1e1;
+    display: inline-block;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 5px;
 }
