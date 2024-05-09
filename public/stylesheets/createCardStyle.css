@@ -72,6 +72,10 @@ button:hover {
     background-color: #4d32cc;
 }
 
+.form-section:has(#createBtn) {
+    text-align: center;
+}
+
 .intro-card {
     background-color: #fff;
     border: 1px solid #ddd;
@@ -116,10 +120,6 @@ button:hover {
 
 .badge-container {
     margin: 10px 0;
-}
-
-.badge {
-    
 }
 
 #tagsList .tag {

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <base href="/">
     <title>Create Your Intro Card</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../../stylesheets/createCardStyle.css">
     <link rel="stylesheet" type="text/css" href="../../stylesheets/navbar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
@@ -188,8 +189,6 @@
                 return;
             }
     
-            
-
             fetch('https://discord.com/api/users/@me', {
                 headers: {
                     authorization: `Bearer ${accessToken}`,
