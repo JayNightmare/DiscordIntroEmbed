@@ -73,7 +73,7 @@
             <section class="form-section">
                 <label for="skills">Your Skills:</label>
                 <div id="tagInputContainer">
-                    <input type="text" id="tagInput" placeholder="Add a skill, press enter or type a comma" onkeyup="handleKeyUp(event)" />
+                    <input type="text" id="tagInput" placeholder="To add a skill, press Enter or type a ," onkeyup="handleKeyUp(event)" />
                     <div id="tagsList"></div>
                 </div>
             </section>            
@@ -114,7 +114,9 @@
                         const color = document.getElementById('color').value;
                         const bio = document.getElementById('bio').value;
                         const intro = document.getElementById('intro').value;
-                        const skills = document.getElementById('tagsList').value; // Split skills by comma
+
+                        const skillsElements = document.querySelectorAll('#tagsList .tag');
+                        const skills = Array.from(skillsElements).map(element => `<li>${element.textContent}</li>`).join(''); // Split skills by comma
 
                         const selectedBadges = Array.from(document.querySelectorAll('input[name="badges"]:checked')).map(checkbox => checkbox.value);
 
@@ -129,17 +131,17 @@
                                 <h2>${global_name}</h2>
                                 <p>${username}</p>
                             </div>
-                            
+
                             <p>${bio}</p>
                             <p>${intro}</p>
                             <div class="badge-container">${selectedBadges.map(badge => `<span class="badge badge-${badge}"></span>`).join('')}</div>
-                            <ul class="skills-list">${skills.map(skill => `<li>${skill.trim()}</li>`).join('')}</ul>
+                            <ul class="skills-list">${skills}</ul>
                             <p>Template: ${template}</p>
                         </div>
                         `;
 
                         document.querySelector('.intro-card-avatar').style.backgroundImage = `url("https://cdn.discordapp.com/avatars/${id}/${avatar}")`;
-                        document.querySelector('.intro-card-bio').innerHTML = bio;
+                        // document.querySelector('.intro-card-bio').innerHTML = bio;
 
                         function getLuminance(rgb) {
                         // Split the RGB values
@@ -153,7 +155,7 @@
 
                         function updateTextColor(elementId) {
                             const element = document.getElementById(elementId);
-                            const bgColor = window.getComputedStyle(element).style.backgroundColor;
+                            const bgColor = window.getComputedStyle(element).backgroundColor;
                             // Convert background color to RGB array
                             const rgb = bgColor.replace(/^rgba?\(|\s+|\)$/g, '').split(',');
                             const luminance = getLuminance(rgb.map(Number));
