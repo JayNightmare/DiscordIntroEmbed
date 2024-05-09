@@ -30,24 +30,23 @@ app.get('navbar-input', (request, response) => {
     return response.sendFile('navbar.html', { root: '.' });
 })
 
-app.use(session({
-	secret: '1234',
-	resave: false,
-	saveUninitialized: true,
-	cookie: { secure: true }
-  }));
+// app.use(session({
+// 	secret: '1234',
+// 	resave: false,
+// 	saveUninitialized: true,
+// 	cookie: { secure: true }
+// }));
   
-  // Save the token in the session
-  app.get('/auth/discord/callback', (req, res) => {
-	  req.session.accessToken = accessToken; // Save token after authentication
-	  res.redirect('/dashboard');
-  });
-  
-  // Access the token from session
-  app.get('/some-protected-route', (req, res) => {
-	  const accessToken = req.session.accessToken;
-  });
+// Save the token in the session
+app.get('/auth/discord/callback', (req, res) => {
+    req.session.accessToken = accessToken; // Save token after authentication
+    res.redirect('/dashboard');
+});
 
+// Access the token from session
+app.get('/some-protected-route', (req, res) => {
+    const accessToken = req.session.accessToken;
+});
 
 const port = '53134';
 app.listen(port, () => console.log(`App listening at http://localhost:${port}`));

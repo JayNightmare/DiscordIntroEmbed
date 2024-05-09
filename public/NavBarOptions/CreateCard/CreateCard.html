@@ -10,14 +10,18 @@
         integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-        <script>
-            fetch('navbar.html')
-            .then(response => response.text())
-            .then(html => {
-                document.getElementById('navbar-input').innerHTML = html;
-            })
-            .catch(err => console.error('Failed to load navbar: ', error));
-        </script>
+    <script>
+        fetch('navbar.html')
+        .then(response => response.text())
+        .then(html => {
+            document.getElementById('navbar-input').innerHTML = html;
+        })
+        .catch(err => console.error('Failed to load navbar: ', error));
+    </script>
+
+    <script>
+        
+    </script>
 </head>
 <body>
     <div id="navbar-input"></div>
@@ -26,7 +30,7 @@
         <h1>Create Your Custom Intro Card</h1>
         
         <!-- Form for creating an intro card -->
-        <form id="introCardForm">
+        <div id="introCardForm">
             <!-- Section for choosing a template -->
             <section class="form-section">
                 <label for="template">Choose a template:</label>
@@ -68,14 +72,17 @@
             <!-- Section for skills input -->
             <section class="form-section">
                 <label for="skills">Your Skills:</label>
-                <input type="text" id="skills" name="skills" placeholder="List your skills, separated by commas">
-            </section>
+                <div id="tagInputContainer">
+                    <input type="text" id="tagInput" placeholder="Add a skill, press enter or type a comma" onkeyup="handleKeyUp(event)" />
+                    <div id="tagsList"></div>
+                </div>
+            </section>            
 
             <!-- Section for creating the intro card -->
             <section class="form-section">
                 <button type="button" id="createBtn">Create Intro Card</button>
             </section>
-        </form>
+        </div>
 
         <!-- Display the created intro card -->
         <div id="introCardDisplay" class="intro-card">
@@ -107,14 +114,14 @@
                         const color = document.getElementById('color').value;
                         const bio = document.getElementById('bio').value;
                         const intro = document.getElementById('intro').value;
-                        const skills = document.getElementById('skills').value.split(','); // Split skills by comma
+                        const skills = document.getElementById('tagsList').value; // Split skills by comma
 
                         const selectedBadges = Array.from(document.querySelectorAll('input[name="badges"]:checked')).map(checkbox => checkbox.value);
 
                         // Build out the intro card with new elements
                         const displayArea = document.getElementById('introCardDisplay');
                         displayArea.innerHTML = `
-                        <div class="intro-card" style="background-color:${color};">
+                        <div id="text-color" class="intro-card" style="background-color:${color};">
                             <div id="center">
                                 <div alt="User Avatar" class="intro-card-avatar"></div>
                             </div>
@@ -133,6 +140,30 @@
 
                         document.querySelector('.intro-card-avatar').style.backgroundImage = `url("https://cdn.discordapp.com/avatars/${id}/${avatar}")`;
                         document.querySelector('.intro-card-bio').innerHTML = bio;
+
+                        function getLuminance(rgb) {
+                        // Split the RGB values
+                        const [r, g, b] = rgb.map(c => {
+                            c /= 255;
+                            return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+                        });
+                            // Calculate luminance
+                            return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+                        }
+
+                        function updateTextColor(elementId) {
+                            const element = document.getElementById(elementId);
+                            const bgColor = window.getComputedStyle(element).style.backgroundColor;
+                            // Convert background color to RGB array
+                            const rgb = bgColor.replace(/^rgba?\(|\s+|\)$/g, '').split(',');
+                            const luminance = getLuminance(rgb.map(Number));
+                            // Set text color based on luminance
+                            const textColor = luminance < 0.5 ? 'white' : 'black';
+                            element.style.color = textColor;
+                        }
+
+                        // Use this function when the background color of an element might change
+                        updateTextColor('text-color');
                     });
                 })
                 .catch(console.error);
@@ -177,6 +208,25 @@
                 })
                 .catch(console.error);
         };
+    </script>
+    <script>
+        function handleKeyUp(event) {
+            if (event.key === "," || event.key === "Enter") {
+                const input = document.getElementById('tagInput');
+                const value = input.value.replace(/,| /g, ''); // Remove commas and spaces
+                if (value) { addTag(value); }
+                input.value = ''; // Clear input after adding tag
+            }
+        }
+
+        function addTag(value) {
+            const tagsList = document.getElementById('tagsList');
+            const tag = document.createElement('div');
+            tag.className = 'tag';
+            tag.textContent = value;
+            tag.onclick = function() { this.remove(); }; // Remove tag on click
+            tagsList.appendChild(tag);
+        }
     </script>
 </body>
 </html>
