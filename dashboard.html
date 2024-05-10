@@ -19,13 +19,20 @@
             .then(html => { document.getElementById('navbar-input').innerHTML = html; })
             .catch(err => console.error('Failed to load navbar: ', error));
     </script>
+    <script>
+        function toggleMenu() {
+            var navItems = document.getElementById("navItems");
+            if (navItems.classList.contains('active')) { navItems.classList.remove('active'); } 
+            else { navItems.classList.add('active'); }
+        }
+    </script>
 </head>
 
 <body>
     <div id="navbar-input"></div>
 
     <div class="flex items-center bg-discord-gray text-white flex-col" id="top-user-info-content-section">
-        <div class="text-2xl">Welcome to the dashboard,</div>
+        <div class="text-2xl">Welcome to the dashboard</div>
         <div class="text-4xl mt-3 flex items-center font-medium" id="account-info">
             <div class="image-3Qwc32" id="avatar" class="rounded-full w-12 h-12 mr-3" alt="" ></div>
             <div id="name"></div>

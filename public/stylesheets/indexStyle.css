@@ -1,6 +1,8 @@
 :root {
-    --accent: 124, 58, 237;
-    --accent-gradient: linear-gradient( 45deg, rgb(var(--accent)), #da62c4 30%, white 60% );
+    --vc-primary: rgb(30, 32, 33);
+    --vc-secondary: rgb(235, 115, 149);
+
+    --accent-gradient: linear-gradient(45deg, var(--vc-primary) 55%, var(--vc-secondary) 55%);
 }
 
 html,
@@ -10,21 +12,31 @@ body {
     font-family: system-ui, sans-serif;
 }
 
-a#login {
-    text-decoration: none;
-    color:#23272a;
-
-    display: flex;            /* Enables flexbox */
-    align-items: center;      /* Centers items vertically in the container */
-    justify-content: center;  /* Centers items horizontally in the container */
-}
-
-a span {
+a#login span {
+    display: inline-block;
     background-image: var(--accent-gradient);
+    background-size: 300% 100%;
+    transition: all 0.5s ease;
+
+    /* Ensuring text is visible on the gradient with a clipping mask */
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    background-size: 400%;
-    background-position: 0%;
+}
+
+a#login:hover span {
+    background-position: 100% 50%;
+}
+
+/* General styling improvements for your button */
+a#login {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 5px;
+    color: #23272a;
+    transition: all 0.3s; 
 }
 
 a h1 {
@@ -33,7 +45,7 @@ a h1 {
     align-items: center; /* Centers text vertically in h1 */
     justify-content: center; /* Centers text horizontally in h1 */
     flex: 1; /* Allows the h1 to expand */
-    gap: 12px;
+    gap: 6px;
 }
 
 a#login .fa-discord {
@@ -117,7 +129,12 @@ a#login > h1 {
 .hover\:bg-gray-600:hover {
     background-color: #4b545c;
     /* A lighter shade of gray for hover effect */
+
+    span {
+        animation: gradient-shift 3s linear 1;
+    }
 }
+
 
 /* Transitions */
 .transition {

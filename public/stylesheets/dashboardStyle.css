@@ -24,6 +24,8 @@ body {
 .text-2xl {
     font-size: 1.5rem; /* Medium-large text */
     padding: 0.5rem 0; /* Some padding around the text */
+
+    text-align: center;
 }
 
 /* User name and avatar container */
@@ -104,7 +106,7 @@ div#account-info {
 
 .liked-list {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 10px;
     justify-items: center;
 }
@@ -117,8 +119,6 @@ div#account-info {
     justify-content: center;
 
     border-radius: 5px;
-
-    height: 320px;
 
     padding: 10px;
 }
@@ -134,4 +134,10 @@ div#account-info {
 
 #top-user-info-content-section {
     padding: 0 0 25px 0;
+}
+
+@media screen and (max-width: 412px) {
+    .liked-list {
+        grid-template-columns: repeat( 1, 1fr ) !important;
+    }
 }

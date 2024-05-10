@@ -5,7 +5,6 @@
     align-items: center;
     background-color: #2C2F33; /* Discord dark color */
     padding: 1rem;
-    color: white;
 }
 
 /* Style for the logo */
@@ -20,21 +19,19 @@
     background-repeat: no-repeat; /* do not repeat the image */
 }
 
-.nav-logo a {
-    text-decoration: none;
-}
+.nav-logo a { text-decoration: none; }
 
 /* Style for navigation items */
 .nav-items a {
     margin: 0 1rem;
     color: white;
     text-decoration: none;
+    display: block;
+    text-align: center;
     font-size: 1rem !important;
 }
 
-.nav-items a:hover {
-    color: #7289DA; /* Discord blue for hover state */
-}
+.nav-items a:hover { color: #7289DA; }
 
 /* Style for user avatar */
 .nav-user img {
@@ -43,15 +40,36 @@
     border-radius: 50%; /* Circular images */
 }
 
-/* Responsive styling for smaller screens */
-@media (max-width: 768px) {
-    .nav-items a {
-        display: none; /* Hide nav links on small screens */
-    }
+/* Styling for the hamburger menu icon */
+.hamburger {
+    display: none; 
+    cursor: pointer;
+    font-size: 30px;
+    color: white;
+}
 
-    .nav-user {
-        flex-grow: 1;
-        display: flex;
-        justify-content: flex-end;
+.nav-items {
+    display: flex; 
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 768px) {
+    .hamburger {
+        display: block;
+    }
+    .nav-items {
+        position: absolute;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background-color: #23272a;
+        display: none;  
+        flex-direction: column;  
+        padding: 20px 0;
+    }
+    .nav-items.active {
+        display: flex; 
     }
 }
