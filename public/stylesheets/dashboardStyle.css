@@ -104,12 +104,13 @@ div#account-info {
 
 .liked-list {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(4, 1fr);
     gap: 10px;
     justify-items: center;
 }
 
-#liked-content [id="1"], #liked-content [id="2"], #liked-content [id="3"] {
+#liked-content [id="1"], #liked-content [id="2"],
+#liked-content [id="3"], #liked-content [id="4"] {
     background: var(--background-secondary);
 
     display: flex;
@@ -122,7 +123,8 @@ div#account-info {
     padding: 10px;
 }
 
-#liked-content [id="1"] > a, #liked-content [id="2"] > a, #liked-content [id="3"] > a {
+#liked-content [id="1"] > a, #liked-content [id="2"] > a, 
+#liked-content [id="3"] > a, #liked-content [id="4"] > a {
     background: white;
 
     img {
