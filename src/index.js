@@ -4,7 +4,7 @@ const session = require('express-session'); // Import express-session
 
 const app = express();
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'src')));
 
 app.get('/', (request, response) => {
 	return response.sendFile('html/index.html', { root: __dirname });
@@ -60,7 +60,7 @@ app.get('/auth/discord/callback', (req, res) => {
             return res.status(500).send('Internal Server Error');
         }
         req.session.accessToken = accessToken;
-        res.redirect('../public/html/dashboard.html');
+        return res.redirect('html/dashboard.html', { root: __dirname });
     });
 });
 
