@@ -3,10 +3,9 @@ window.onload = () => {
     const [accessToken, tokenType] = [fragment.get('access_token'), fragment.get('token_type')];
 
     if (!accessToken) {
-        window.location.href = '/';
+        window.location.href = '../public/html/index.html';
         return;
     }
-
 
     fetch('https://discord.com/api/users/@me', {
         headers: {

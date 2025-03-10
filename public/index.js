@@ -7,19 +7,19 @@ const app = express();
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (request, response) => {
-	return response.sendFile('index.html', { root: __dirname });
+	return response.sendFile('html/index.html', { root: __dirname });
 });
 
 app.get('/auth/discord', (request, response) => {
-	return response.sendFile('dashboard.html', { root: __dirname });
+	return response.sendFile('html/dashboard.html', { root: __dirname });
 });
 
 app.get('/CreateCard', function(request, response) {
-    return response.sendFile('public/NavBarOptions/CreateCard/CreateCard.html', { root: __dirname });
+    return response.sendFile('NavBarOptions/CreateCard/CreateCard.html', { root: __dirname });
 });
 
 app.get('/Gallery', function(request, response) {
-    return response.sendFile('public/NavBarOptions/Gallery/Gallery.html', { root: __dirname });
+    return response.sendFile('NavBarOptions/Gallery/Gallery.html', { root: __dirname });
 });
 
 app.get('*', (request, response) => {
@@ -28,7 +28,7 @@ app.get('*', (request, response) => {
 });
 
 app.get('navbar-input', (request, response) => {
-    return response.sendFile('navbar.html', { root: __dirname });
+    return response.sendFile('html/navbar.html', { root: __dirname });
 });
 
 app.use(session({
@@ -60,7 +60,7 @@ app.get('/auth/discord/callback', (req, res) => {
             return res.status(500).send('Internal Server Error');
         }
         req.session.accessToken = accessToken;
-        res.redirect('/dashboard');
+        res.redirect('../public/html/dashboard.html');
     });
 });
 
@@ -69,5 +69,5 @@ app.use((req, res, next) => {
     next();
 });
 
-const port = '53134';
-app.listen(port, () => console.log(`App listening at http://localhost:${port}`));
+const port = '5500';
+app.listen(port, () => console.log(`App listening at http://127.0.0.1:${port}`));
