@@ -20,6 +20,7 @@ a#login span {
 
     /* Ensuring text is visible on the gradient with a clipping mask */
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
