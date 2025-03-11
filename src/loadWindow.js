@@ -1,5 +1,5 @@
 window.onload = () => {
-    // Read cookies and extract the accessToken
+    // Read cookies and extract the JWT token
     function getCookie(name) {
         return document.cookie.split('; ').reduce((acc, cookie) => {
             let [key, value] = cookie.split('=');
@@ -8,25 +8,30 @@ window.onload = () => {
         }, null);
     }
 
-    const accessToken = getCookie('accessToken');
+    const authToken = getCookie('auth_token'); // Updated to match JWT cookie from server
 
-    if (!accessToken) {
+    if (!authToken) {
         window.location.href = '/index.html'; // Redirect to login if no token
         return;
     }
 
-    fetch('https://discord.com/api/users/@me', {
+    // Validate token by calling the authentication status API
+    fetch('https://your-server-url.com/api/auth/status', {
         headers: {
-            authorization: `Bearer ${accessToken}`,
+            'Authorization': `Bearer ${authToken}`
         },
+        credentials: 'include'
     })
-    .then(result => result.json())
     .then(response => {
-        console.log(response);
-        const { username, discriminator, avatar, id, global_name } = response;
+        if (!response.ok) throw new Error('Unauthorized');
+        return response.json();
+    })
+    .then(user => {
+        console.log("Authenticated User:", user);
+        const { username, avatar, id } = user;
 
         // Set welcome message
-        document.getElementById('name').innerText = ` ${global_name}`;
+        document.getElementById('name').innerText = ` ${username}`;
         document.getElementById('username').innerText = `${username}`;
 
         // Set avatar images if available
@@ -39,7 +44,7 @@ window.onload = () => {
         document.getElementById("profile-link").href = `/auth/discord`;
     })
     .catch(error => {
-        console.error("Failed to fetch user data:", error);
+        console.error("Authentication failed:", error);
         window.location.href = '/index.html'; // Redirect to login on failure
     });
 };
