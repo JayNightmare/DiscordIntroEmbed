@@ -1,36 +1,45 @@
 window.onload = () => {
-    const fragment = new URLSearchParams(window.location.hash.slice(1));
-    const [accessToken, tokenType] = [fragment.get('access_token'), fragment.get('token_type')];
+    // Read cookies and extract the accessToken
+    function getCookie(name) {
+        return document.cookie.split('; ').reduce((acc, cookie) => {
+            let [key, value] = cookie.split('=');
+            if (key === name) return decodeURIComponent(value);
+            return acc;
+        }, null);
+    }
+
+    const accessToken = getCookie('accessToken');
 
     if (!accessToken) {
-        window.location.href = '../public/html/index.html';
+        window.location.href = '/index.html'; // Redirect to login if no token
         return;
     }
 
     fetch('https://discord.com/api/users/@me', {
         headers: {
-            authorization: `${tokenType} ${accessToken}`,
+            authorization: `Bearer ${accessToken}`,
         },
     })
-        // Avatar Icon Script Extended
-        .then(result => result.json())
-        .then(response => {
-            console.log(response);
-            const { username, discriminator, avatar, id, global_name } = response;
-            //set the welcome username string
-            document.getElementById('name').innerText = ` ${global_name}`;
-            document.getElementById('username').innerText = `${username}`;
+    .then(result => result.json())
+    .then(response => {
+        console.log(response);
+        const { username, discriminator, avatar, id, global_name } = response;
 
-            //set the avatar image by constructing a url to access discord's cdn
-            // document.getElementById("avatar").src = `https://cdn.discordapp.com/avatars/${id}/${avatar}.jpg`;
+        // Set welcome message
+        document.getElementById('name').innerText = ` ${global_name}`;
+        document.getElementById('username').innerText = `${username}`;
 
+        // Set avatar images if available
+        if (avatar) {
             document.querySelector('.image-3Qwc32').style.backgroundImage = `url("https://cdn.discordapp.com/avatars/${id}/${avatar}")`;
-            console.log(document.getElementById('avatar').style.backgroundImage = `url("https://cdn.discordapp.com/avatars/${id}/${avatar}")`);
-
             document.querySelector('.image-1Psl69').style.backgroundImage = `url("https://cdn.discordapp.com/avatars/${id}/${avatar}")`;
-            console.log(document.getElementById('avatar').style.backgroundImage = `url("https://cdn.discordapp.com/avatars/${id}/${avatar}")`);
+        }
 
-            document.getElementById("profile-link").href = `/auth/discord#${fragment}`;
-        })
-        .catch(console.error);
+        // Set profile link
+        document.getElementById("profile-link").href = `/auth/discord`;
+    })
+    .catch(error => {
+        console.error("Failed to fetch user data:", error);
+        window.location.href = '/index.html'; // Redirect to login on failure
+    });
 };
